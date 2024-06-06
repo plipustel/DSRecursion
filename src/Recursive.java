@@ -47,7 +47,7 @@ public class Recursive {
 		if (n == 1 || n == 0) {
 			return 1;
 		} else {
-			System.out.println(n);
+	//		System.out.println(n);
 			return n * Factorial(n - 1); // recursive call
 		}
 		
@@ -69,14 +69,70 @@ public class Recursive {
 		 * 
 		 * */
 	}
+	
+	public void Divide(int[] arrNums) {
+		
+		// {1, 3, 7, 2, 5, 8, 4, 3, 5, 9, 8}; -> 11
+		
+		/*
+		 *  Must arrNums.length <= 1, if only arrNums.length < 1, then this will happen:
+		 *  
+		 *  - In 'leftArray' recursion, this is no problem but NOT for 'rightArray' recursion, since:
+		 *    --  When the length of 'leftArray' is '0', the recursion can be terminated, but the recursive(rightArray)
+		 *        will cause the problem because the length of 'rightArray' is 1, which mean the condition NEVER found,
+		 *        causes the infinite recursion (error)
+		 * */
+		
+		
+		if(arrNums.length <= 1) {
+			return;
+		}
+		
+
+		/* When length = 1 -> middle 1/2 = 0 not 0.5*/
+		int middle = Math.round(arrNums.length / 2); // 5
+		
+		
+		int[] leftArray = new int[middle]; // 5
+		int[] rightArray = new int[arrNums.length - middle]; // 11-5=6
+		
+			
+		for(int i = 0; i < leftArray.length; i++) { // 1...4 (5-1)
+			leftArray[i] = arrNums[i]; // 1, 3, 7, 2, 5
+		}
+		
+		for(int i = 0; i < rightArray.length; i++) { // 5..10 (11)
+			rightArray[i] = arrNums[middle++]; // 8, 4, 3, 5, 9, 8
+		}
+		
+		System.out.println("L: "+arrNums.length);
+		for(int i : arrNums) {
+			System.out.print(i + ", ");
+		}
+	
+		System.out.println("");
+		System.out.println("");
+		//Divide(leftArray);
+
+		Divide(leftArray);
+		
+		System.out.println(arrNums.length);
+		//Divide(rightArray);
+		
+	}
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Recursive recursive = new Recursive();
-		int result = recursive.Factorial(5);
-		System.out.println(result);
+		Recursive Recursion = new Recursive();
+		int result = Recursion.Factorial(5);
+		//System.out.println(result);
+		
+		int[] arrNums = {1, 3, 7, 2, 5, 8, 4, 3, 5, 9, 8};
+		
+		
+		Recursion.Divide(arrNums);
 	}
 
 }
