@@ -34,12 +34,12 @@
  *      
  */
 
-public class Recursive {
+public class Recursion {
 
 	/**
 	 * 
 	 */
-	public Recursive() {
+	public Recursion() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -171,7 +171,7 @@ public class Recursive {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Recursive Recursion = new Recursive();
+		Recursion Recursion = new Recursion();
 		int result = Recursion.Factorial(5);
 		//System.out.println(result);
 		
