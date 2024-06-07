@@ -82,12 +82,10 @@ public class Recursive {
 		 *        will cause the problem because the length of 'rightArray' is 1, which mean the condition NEVER found,
 		 *        causes the infinite recursion (error)
 		 * */
-		
-		
+				
 		if(arrNums.length <= 1) {
 			return;
-		}
-		
+		}	
 
 		/* When length = 1 -> middle 1/2 = 0 not 0.5*/
 		int middle = Math.round(arrNums.length / 2); // 5
@@ -105,19 +103,67 @@ public class Recursive {
 			rightArray[i] = arrNums[middle++]; // 8, 4, 3, 5, 9, 8
 		}
 		
-		System.out.println("L: "+arrNums.length);
-		for(int i : arrNums) {
-			System.out.print(i + ", ");
+//		for(int i : leftArray) {
+//			System.out.print("L-"+ i + ", ");
+//		}
+//		System.out.print("|| ");
+//		for(int i : rightArray) {
+//			System.out.print("R-"+ i + ", ");
+//		}
+//	
+//		System.out.println("");
+//		System.out.println("");
+
+		
+		Divide(leftArray);
+		Divide(rightArray);
+		
+		for(int i : leftArray) {
+			System.out.print("L+"+ i + ", ");
+		}
+		System.out.print("|| ");
+		for(int i : rightArray) {
+			System.out.print("R+"+ i + ", ");
 		}
 	
 		System.out.println("");
+		System.out.print(leftArray.length + " vs " + rightArray.length);
 		System.out.println("");
-		//Divide(leftArray);
-
-		Divide(leftArray);
 		
-		System.out.println(arrNums.length);
-		//Divide(rightArray);
+		int l = 0;
+		int r = 0;
+		int n = 0;
+		
+		while(l < leftArray.length && r < rightArray.length) {
+			System.out.println(leftArray[l] + " < " + rightArray[r] + " ? ");
+			if(leftArray[l] < rightArray[r]) {
+				arrNums[n] = leftArray[l];
+				l++;
+				n++;
+			} else {
+				arrNums[n] = rightArray[r];
+				r++;
+				n++;	
+			}			
+		}
+		
+//		while(l < leftArray.length) {
+//			arrNums[n] = leftArray[l];
+//			l++;
+//			n++;
+//		}
+//		while(r < rightArray.length) {
+//			arrNums[n] = rightArray[r];
+//			r++;
+//			n++;
+//		}
+//		
+//		for(int j: arrNums) {
+//			System.out.print(j + ", ");
+//		}
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
 		
 	}
 	/**
@@ -129,10 +175,16 @@ public class Recursive {
 		int result = Recursion.Factorial(5);
 		//System.out.println(result);
 		
-		int[] arrNums = {1, 3, 7, 2, 5, 8, 4, 3, 5, 9, 8};
+		int[] arrNums = {1, 3, 7, 2, 5, 8, 4, 3, 5, 8};
 		
-		
+		for(int arr: arrNums) {
+			System.out.print(arr + ", ");
+		}
+		System.out.println("\n");
 		Recursion.Divide(arrNums);
+		for(int arr: arrNums) {
+			System.out.print(arr + ", ");
+		}
 	}
 
 }
