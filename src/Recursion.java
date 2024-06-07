@@ -1,36 +1,16 @@
 /**
- * ALL ABOUT RECURSIVE 
+ * ALL ABOUT RECURSION 
  * 
  * @Complexity : 
- * - O(1) best case 
- * - O(log n) worst case
+ * O(n log n) in worst, best and average case
  *
  * @Author Plipus Tel <https://www.plipus.tel.com>
  * @Created June 06, 2024
  * @LastModified See in github log
  * 
- * @Defenition : > Tree Data Structure is inverted tree, whis has root and nodes
- * 
- * 1. TREE 				   : The fundamental of tree explaining the elements in the tree, root, node, leaf, edges, height, 
- *                           depth... and so on..
- *                           
- * 2. BINARY TREE          : Tree whish has at most 2 nodes
- * 3. BINARY TREE TRAVERSAL: It's about visiting the nodes in the tree, consits of two
- * 
- *    A. BREATH FIRST SEARCH (BFS): Visiting the nodes in the same level of sub tree (branch), in sideways direction
- *    B. DEPTH FIRST SEARCH (DFS): Visitin the nodes from root to the leaf in downwards direction
- *    
- *       DFS consits 3 methods:
- *       1. DFS PreOrder Traversal
- *          - Recursively visiting the sub-tree (branch) from root -> left -> right AND move to 
- *            the another branch root -> left -> right, and so on unit there is not nodes is remaining (Node is NULL)
- *          - Character only print 'root' node, recursively until it all done
- *          
- *       2. DFS InOrder Traversal
- *       
- *          - Typically implemented in Binary Search Tree (BST)
- *          
- *       3. DFS PostOrder Traversal
+ * @Defenition : > Learn the fundamental of Recursive (Divide and Conquer Algorithm) is the strong knowledge to
+ *                 implement advanced algorithm (like TREE, GRAPH, BST and so on...)
+ *               > It's very crusial and important to uderstand how the recursion is work
  *      
  */
 
@@ -43,11 +23,51 @@ public class Recursion {
 		// TODO Auto-generated constructor stub
 	}
 
+	/* POST-ORDER TRAVERSAL */
+	public void Recursive(int i) {
+		if(i >= 3) {
+			return;
+		}
+		
+		i++;
+		Recursive(i);
+		System.out.println(i);
+		
+		/* 
+		 * WHEN YOU WRITE THE RECURSION LIKE THIS THEN:
+		 * 
+		 * THIS IS ILLUSTARTION INCORRECT !
+		 * Recursive 1: test(1)
+		 *     Recursive 2: test(2)
+		 *             Recursive 3: test(3)
+		 *             Recursive 3: print 3
+		 *     Recursive2: print 2
+		 * Recursive 1: print 1
+		 *
+		 * but...
+		 *
+		 * THIS IS THE CORRECT ILLUSTRATION
+		 * Recursive 1: test(1)
+		 *	      Recursive 2: test(2)
+		 *	              Recursive 3: test(3)
+		 *
+		 *	After ALL the recursive is DONE, then go back to execute the satement beneath it
+		 *
+		 *	print 3 <-- 1st execution, THIS IS WHY MERGE SORT ALGORITHM (DIVIDE & CONQUER) IS WORK HERE
+		 *	print 2 <-- 2nd execution
+		 *	print 1 <-- 3rd excecuton
+		 *	
+		 *  Repectively !
+		 *  
+		 *  
+		 *  THIS IS CALLED 'POST-ORDER TRAVERSAL'
+		 */
+	}
+	
 	public int Factorial(int n) {
 		if (n == 1 || n == 0) {
 			return 1;
 		} else {
-	//		System.out.println(n);
 			return n * Factorial(n - 1); // recursive call
 		}
 		
@@ -72,7 +92,7 @@ public class Recursion {
 	
 	public void Divide(int[] arrNums) {
 		
-		// {1, 3, 7, 2, 5, 8, 4, 3, 5, 9, 8}; -> 11
+		// GIVEN ARRAY: {1, 3, 7, 2, 5, 8, 4, 3, 5, 8} -> 10
 		
 		/*
 		 *  Must arrNums.length <= 1, if only arrNums.length < 1, then this will happen:
@@ -82,7 +102,6 @@ public class Recursion {
 		 *        will cause the problem because the length of 'rightArray' is 1, which mean the condition NEVER found,
 		 *        causes the infinite recursion (error)
 		 * */
-				
 		if(arrNums.length <= 1) {
 			return;
 		}	
@@ -92,7 +111,7 @@ public class Recursion {
 		
 		
 		int[] leftArray = new int[middle]; // 5
-		int[] rightArray = new int[arrNums.length - middle]; // 11-5=6
+		int[] rightArray = new int[arrNums.length - middle]; // 11-5 = 6
 		
 			
 		for(int i = 0; i < leftArray.length; i++) { // 1...4 (5-1)
@@ -102,17 +121,6 @@ public class Recursion {
 		for(int i = 0; i < rightArray.length; i++) { // 5..10 (11)
 			rightArray[i] = arrNums[middle++]; // 8, 4, 3, 5, 9, 8
 		}
-		
-//		for(int i : leftArray) {
-//			System.out.print("L-"+ i + ", ");
-//		}
-//		System.out.print("|| ");
-//		for(int i : rightArray) {
-//			System.out.print("R-"+ i + ", ");
-//		}
-//	
-//		System.out.println("");
-//		System.out.println("");
 
 		
 		Divide(leftArray);
@@ -125,9 +133,10 @@ public class Recursion {
 		for(int i : rightArray) {
 			System.out.print("R+"+ i + ", ");
 		}
-	
 		System.out.println("");
-		System.out.print(leftArray.length + " vs " + rightArray.length);
+		
+
+		System.out.print("L:" +leftArray.length + " vs " + "R:" + rightArray.length);
 		System.out.println("");
 		
 		int l = 0;
@@ -146,22 +155,20 @@ public class Recursion {
 				n++;	
 			}			
 		}
+		while(l < leftArray.length) {
+			arrNums[n] = leftArray[l];
+			l++;
+			n++;
+		}
+		while(r < rightArray.length) {
+			arrNums[n] = rightArray[r];
+			r++;
+			n++;
+		}
 		
-//		while(l < leftArray.length) {
-//			arrNums[n] = leftArray[l];
-//			l++;
-//			n++;
-//		}
-//		while(r < rightArray.length) {
-//			arrNums[n] = rightArray[r];
-//			r++;
-//			n++;
-//		}
-//		
-//		for(int j: arrNums) {
-//			System.out.print(j + ", ");
-//		}
-		System.out.println("");
+		for(int j: arrNums) {
+			System.out.print(j + ", ");
+		}
 		System.out.println("");
 		System.out.println("");
 		
@@ -177,14 +184,21 @@ public class Recursion {
 		
 		int[] arrNums = {1, 3, 7, 2, 5, 8, 4, 3, 5, 8};
 		
+		System.out.println("1. UNSORTED ARRAY: ");
 		for(int arr: arrNums) {
 			System.out.print(arr + ", ");
 		}
 		System.out.println("\n");
+		System.out.println("2. DIVIDE & CONQUER ALGORITHM BREAKDOWN:");
 		Recursion.Divide(arrNums);
+		
+		System.out.println("3. SORTED ARRAY: ");
 		for(int arr: arrNums) {
 			System.out.print(arr + ", ");
 		}
+		System.out.println("\n");
+		System.out.println("4. RECURSION POST-ORDER TRAVERSAL: ");
+		Recursion.Recursive(0);
 	}
 
 }
