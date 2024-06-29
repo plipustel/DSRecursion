@@ -35,14 +35,22 @@ public class Recursion {
 		
 		/* 
 		 * WHEN YOU WRITE THE RECURSION LIKE THIS THEN:
+		 *
+		 * def test(n):
+		 *     if > 3:
+		 *  	  return
+		 *     test(n+1)
+		 * 	   print(n)
 		 * 
-		 * THIS IS ILLUSTRATION INCORRECT !
+		 * test(1)
+		 * 
+		 * THIS ILLUSTRATION IS INCORRECT !
 		 * Recursive 1: test(1)
+		 *              print 1
 		 *     Recursive 2: test(2)
+		 *                  print 2
 		 *             Recursive 3: test(3)
-		 *             Recursive 3: print 3
-		 *     Recursive2: print 2
-		 * Recursive 1: print 1
+		 *                          print 3
 		 *
 		 * but...
 		 *
@@ -50,14 +58,16 @@ public class Recursion {
 		 * Recursive 1: test(1)
 		 *	      Recursive 2: test(2)
 		 *	              Recursive 3: test(3)
-		 *
-		 *	After ALL the recursive is DONE, then go back to execute all the statements beneath it
+		 *                print(3)
+		 *        print(2)
+		 * print(1)
+		 * After ALL the recursion is DONE, then go back to execute all the statements beneath it
 		 *
 		 *	print 3 <-- 1st execution, THIS IS WHY MERGE SORT ALGORITHM (DIVIDE & CONQUER) IS WORK HERE
 		 *	print 2 <-- 2nd execution
 		 *	print 1 <-- 3rd execution
 		 *	
-		 *  in respectively !
+		 *  in desc order respectively !
 		 *  
 		 *  
 		 *  THIS IS CALLED 'POST-ORDER TRAVERSAL'
