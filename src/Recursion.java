@@ -36,7 +36,7 @@ public class Recursion {
 		/* 
 		 * WHEN YOU WRITE THE RECURSION LIKE THIS THEN:
 		 * 
-		 * THIS IS ILLUSTARTION INCORRECT !
+		 * THIS IS ILLUSTRATION INCORRECT !
 		 * Recursive 1: test(1)
 		 *     Recursive 2: test(2)
 		 *             Recursive 3: test(3)
@@ -51,13 +51,13 @@ public class Recursion {
 		 *	      Recursive 2: test(2)
 		 *	              Recursive 3: test(3)
 		 *
-		 *	After ALL the recursive is DONE, then go back to execute the satement beneath it
+		 *	After ALL the recursive is DONE, then go back to execute all the statements beneath it
 		 *
 		 *	print 3 <-- 1st execution, THIS IS WHY MERGE SORT ALGORITHM (DIVIDE & CONQUER) IS WORK HERE
 		 *	print 2 <-- 2nd execution
-		 *	print 1 <-- 3rd excecuton
+		 *	print 1 <-- 3rd execution
 		 *	
-		 *  Repectively !
+		 *  in respectively !
 		 *  
 		 *  
 		 *  THIS IS CALLED 'POST-ORDER TRAVERSAL'
